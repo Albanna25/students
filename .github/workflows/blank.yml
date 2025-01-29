@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -16,9 +15,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      # You can test your matrix by printing the current Python version
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest  # This ensures pytest is installed
+
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
         
       - name: Run unit tests
-        run: pytest test_api.py
+        run: pytest test_api.py  # Run the specific test file
