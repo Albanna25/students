@@ -21,4 +21,4 @@ jobs:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
       - name: Run unit tests
-        run: python -m pytest test_api.py
+        run: python -m pytest test_api.py --import-mode=append tests/
